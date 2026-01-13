@@ -72,3 +72,7 @@ because this way I don't need to deal with stuff like maximal munching.
   - When lexer encounters a variable, return variable object from the symbol table if it exists already
 - Visitor for evaluation
 
+## Todo
+- unary operations
+- unit tests
+- `write` operation?
