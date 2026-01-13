@@ -26,6 +26,7 @@ dependencies {
 
     // Source: https://mvnrepository.com/artifact/org.mockito/mockito-core
     testImplementation("org.mockito:mockito-core:5.21.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.21.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

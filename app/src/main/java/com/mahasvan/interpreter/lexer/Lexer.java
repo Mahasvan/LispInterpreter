@@ -5,6 +5,7 @@ import com.mahasvan.interpreter.types.operators.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Lexer {
 
@@ -21,7 +22,9 @@ public class Lexer {
             var.name = name;
             symbolTable.update(name, var);
         }
-        if (var == null) return null;
+        if (var == null) {
+            throw new NoSuchElementException();
+        }
         var.name = name;
         return var;
     }
@@ -49,12 +52,6 @@ public class Lexer {
     }
 
     private Node classifyToken(String input, boolean isDefVar) {
-        // open parantheses
-        // close parantheses
-        // arithmetic
-        // variable
-        // number
-
         switch (input.toLowerCase()) {
             case "(":
                 return new P_OPEN();
