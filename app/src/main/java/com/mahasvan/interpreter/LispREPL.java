@@ -12,7 +12,6 @@ import java.util.Scanner;
 public class LispREPL {
     public static void main(String[] args) {
         System.out.println("Input each line, with each token separated by a space.");
-        System.out.println("Pls give correct syntax, the syntax parser doesnt work, thx");
         boolean exit = false;
         Lexer lexer = new Lexer();
         ASTBuilder treeBuilder = new ASTBuilder();
