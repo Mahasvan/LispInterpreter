@@ -1,9 +1,9 @@
 package com.mahasvan.interpreter.parser;
 
 import com.mahasvan.interpreter.types.nodes.Node;
-import com.mahasvan.interpreter.types.operators.Operator;
 import com.mahasvan.interpreter.types.nodes.P_CLOSE;
 import com.mahasvan.interpreter.types.nodes.P_OPEN;
+import com.mahasvan.interpreter.types.operators.Operator;
 
 import java.util.ArrayList;
 import java.util.List;

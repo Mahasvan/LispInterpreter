@@ -6,7 +6,7 @@ import com.mahasvan.interpreter.types.visitors.NodeVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Equals implements Operator{
+public class Equals implements Operator {
 
     public List<Node> operands = new ArrayList<>();
 

@@ -6,6 +6,7 @@ import com.mahasvan.interpreter.types.nodes.Node;
 import com.mahasvan.interpreter.types.visitors.EvaluationVisitor;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -35,6 +36,8 @@ public class LispREPL {
 
                 treeBuilder.build(tokens);
                 System.out.println(treeBuilder.getTree().accept(evaluator));
+            } catch (NoSuchElementException e) {
+                System.out.println("Undefined variable: " + input);
             } catch (ArithmeticException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {

@@ -1,6 +1,8 @@
 package com.mahasvan.interpreter.types.visitors;
 
-import com.mahasvan.interpreter.types.nodes.*;
+import com.mahasvan.interpreter.types.nodes.Literal;
+import com.mahasvan.interpreter.types.nodes.Node;
+import com.mahasvan.interpreter.types.nodes.Variable;
 import com.mahasvan.interpreter.types.operators.*;
 
 public class EvaluationVisitor implements NodeVisitor<Integer> {
@@ -38,8 +40,7 @@ public class EvaluationVisitor implements NodeVisitor<Integer> {
         for (Node operand : divide.getOperands()) {
             if (res == null) {
                 res = Double.valueOf(operand.accept(this));
-            }
-            else {
+            } else {
                 res /= Double.valueOf(operand.accept(this));
             }
         }

@@ -1,6 +1,7 @@
 package com.mahasvan.interpreter.types.visitors;
 
-import com.mahasvan.interpreter.types.nodes.*;
+import com.mahasvan.interpreter.types.nodes.Literal;
+import com.mahasvan.interpreter.types.nodes.Variable;
 import com.mahasvan.interpreter.types.operators.*;
 
 public interface NodeVisitor<T> {

@@ -8,14 +8,14 @@ import java.util.Map;
 public class SymbolTable {
 
     private static final SymbolTable instance = new SymbolTable();
+    Map<String, Variable> table = new HashMap<>();
+
+    private SymbolTable() {
+    }
 
     public static SymbolTable getInstance() {
         return instance;
     }
-
-    private SymbolTable() {}
-
-    Map<String, Variable> table = new HashMap<>();
 
     public Variable lookup(String name) {
         return table.get(name);
