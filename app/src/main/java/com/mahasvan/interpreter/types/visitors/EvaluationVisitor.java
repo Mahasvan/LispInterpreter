@@ -34,12 +34,17 @@ public class EvaluationVisitor implements NodeVisitor<Integer> {
 
     @Override
     public Integer visitDivide(Divide divide) {
-        Integer res = null;
+        Double res = null;
         for (Node operand : divide.getOperands()) {
-            if (res == null) res = operand.accept(this);
-            res /= operand.accept(this);
+            if (res == null) {
+                res = Double.valueOf(operand.accept(this));
+            }
+            else {
+                res /= Double.valueOf(operand.accept(this));
+            }
         }
-        return res;
+        if (res == null) return 0;
+        return (int) Math.floor(res);
     }
 
     @Override
