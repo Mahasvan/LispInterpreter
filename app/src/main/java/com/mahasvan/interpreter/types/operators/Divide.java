@@ -21,7 +21,7 @@ public class Divide implements Operator {
 
     @Override
     public boolean validate() {
-        if (operands.size() < 2) return true;
+        if (operands.size() < 2) return false;
         for (Node operand : operands) {
             if (operand == null) return false;
         }
