@@ -27,7 +27,6 @@ public class DefVar implements Operator {
         for (Node operand : operands) {
             if (operand == null) return false;
         }
-        if (!(operands.getFirst() instanceof Variable)) return false;
-        return operands.get(1) != null;
+        return operands.getFirst() instanceof Variable;
     }
 }
