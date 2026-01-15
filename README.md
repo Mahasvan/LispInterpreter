@@ -91,7 +91,7 @@ because this way I don't need to deal with stuff like maximal munching.
 - Visitor for evaluation
 
 ## Todo
-- fix variable reassignment problem
+- ~~fix variable reassignment problem~~ Fixed.
 - unary operations
 - ~~unit tests~~ Unit tests are done. 
 - `write` operation?
