@@ -42,7 +42,6 @@ public class Lexer {
     }
 
     private boolean checkIfVariable(String input) {
-        if (input.isEmpty()) return false;
         boolean isChar = true;
         for (char c : input.toCharArray()) {
             if (!Character.isLetter(c)) {
