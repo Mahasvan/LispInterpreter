@@ -70,8 +70,7 @@ because this way I don't need to deal with stuff like maximal munching.
     - So, when the evaluator tries to evaluate the value of `a`, it errors out. 
     - We can treat it as an expected runtime error, because this is sort of similar to what happens in Python.
     - Fixable creating an `if null` condition in the Variable evaluator, but throwing a runtime error is good enough. 
-- ~~When a variable is defined, the value expression is stored as-is.~~
-  - **Fixed**. 
+- **Fixed** – When a variable is defined, the value expression is stored as-is.
   - This means if the value has a variable, and the variable is reassigned, all variables that depend on it will be changed as well.
   - ```shell
     ( defvar a 1 )
