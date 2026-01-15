@@ -89,5 +89,5 @@ because this way I don't need to deal with stuff like maximal munching.
 ## Todo
 - fix variable reassignment problem
 - unary operations
-- unit tests
+- ~~unit tests~~ Unit tests are done. 
 - `write` operation?
