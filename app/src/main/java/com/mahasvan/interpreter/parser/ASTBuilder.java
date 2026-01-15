@@ -13,7 +13,7 @@ public class ASTBuilder {
 
     private Node tree = null;
 
-    private List<Node> getOperands(Stack<Node> stack) {
+    private List<Node> getOperands(Stack<Node> stack) throws ArithmeticException {
         ArrayList<Node> operands = new ArrayList<>();
         while (!stack.isEmpty() && !(stack.peek() instanceof POpen)) {
             operands.add(stack.pop());
@@ -21,6 +21,8 @@ public class ASTBuilder {
         if (!stack.isEmpty()) {
             stack.pop();
             // pop out the open parenthesis
+        } else {
+            throw new ArithmeticException("Invalid Syntax");
         }
         return operands.reversed();
     }
