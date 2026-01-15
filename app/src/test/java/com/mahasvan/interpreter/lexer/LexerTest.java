@@ -24,9 +24,14 @@ public class LexerTest {
         lexer = new Lexer();
     }
 
+    @Test
+    public void testEmptyStatementReturnsEmptyList() {
+        List<Node> tokens = lexer.tokenize("");
+        assert tokens.isEmpty();
+    }
+
     @ParameterizedTest
     @ValueSource(strings = {"(abc", "+12a"})
-
     public void testInvalidTokenReturnsNull(String statement) {
         Assertions.assertThrows(
                 ArithmeticException.class,
