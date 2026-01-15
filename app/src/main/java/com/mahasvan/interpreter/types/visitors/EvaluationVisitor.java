@@ -64,8 +64,9 @@ public class EvaluationVisitor implements NodeVisitor<Integer> {
     @Override
     public Integer visitDefVar(DefVar defVar) {
         Variable var = (Variable) defVar.getOperands().getFirst();
-        var.value = defVar.getOperands().get(1);
-        return var.value.accept(this);
+        Integer value = defVar.getOperands().get(1).accept(this);
+        var.value = new Literal(value);
+        return value;
     }
 
     @Override

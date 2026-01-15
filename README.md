@@ -57,26 +57,30 @@ because this way I don't need to deal with stuff like maximal munching.
 
 ## Problems
 
-- Variable definitions inside if-statements populate the symbol table before the branch is executed.
+- Variable definitions inside else-statements populate the symbol table before even if the branch isn't executed.
     - Example:
     - ```shell
-      ( defvar d 5 )
-      ( if ( = d 6 ) ( defvar g 3 ) )
-      ( + 0 g ) <-- 5
+      >>> ( if 1 ( + 1 2 ) ( defvar a 5 ) )
+      3
+      >>> ( + 0 a ) <-- Runtime error because value of `a` is null.
+      Runtime Error: Cannot invoke "com.mahasvan.interpreter.types.nodes.Node.accept(com.mahasvan.interpreter.types.visitors.NodeVisitor)" because "variable.value" is null
       ```
-    - When making the AST, a Variable object is created for g, as it is a defvar statement.
-    - Since the branch hasnt been executed yet, its value is still `null`.
-    - So, an error is raised when the evaluator tries to access its value.
+    - When building the AST, a Variable object is created for `a` naively, as it is inside a `defvar` statement.
+    - Since the branch hasnt been executed yet, its value hasn't been assigned yet, so is still `null`.
+    - So, when the evaluator tries to evaluate the value of `a`, it errors out. 
     - We can treat it as an expected runtime error, because this is sort of similar to what happens in Python.
-- When a variable is defined, the value expression is stored as-is.
-- This means if the value has a variable, and the variable is reassigned, all variables that depend on it will be changed as well.
--  Can be solved by flattening the expression into a `Literal` when assigning the value.
+    - Fixable creating an `if null` condition in the Variable evaluator, but throwing a runtime error is good enough. 
+- ~~When a variable is defined, the value expression is stored as-is.~~
+  - **Fixed**. 
+  - This means if the value has a variable, and the variable is reassigned, all variables that depend on it will be changed as well.
   - ```shell
     ( defvar a 1 )
     ( defvar b a )
     ( defvar a 3 )
-    ( + 0 b ) <-- prints 3, but should ideally print 1
+    ( + 0 b ) <-- prints `3`, but should have been `1`
     ```
+  - Can be solved by flattening the expression into a `Literal` when assigning the value.
+
 
 ## Patterns used
 
