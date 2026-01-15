@@ -2,6 +2,7 @@ package com.mahasvan.interpreter.types.operators;
 
 import com.mahasvan.interpreter.lexer.Lexer;
 import com.mahasvan.interpreter.parser.ASTBuilder;
+import com.mahasvan.interpreter.types.nodes.Literal;
 import com.mahasvan.interpreter.types.nodes.Node;
 import com.mahasvan.interpreter.types.visitors.EvaluationVisitor;
 import org.junit.jupiter.api.BeforeEach;
@@ -49,6 +50,17 @@ class AddTest {
                 ArithmeticException.class,
                 () -> astBuilder.build(tokens));
 
+    }
+
+    @Test
+    void testValidAdditionValidatesToTrue() {
+        Add add = new Add();
+        List<Node> operands = new ArrayList<>();
+        operands.add(new Literal(1));
+        operands.add(new Literal(2));
+        add.getOperands().addAll(operands);
+        assert add.validate();
+        assert add.accept(evaluationVisitor) == 3;
     }
 
     @Test
