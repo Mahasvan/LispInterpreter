@@ -30,6 +30,7 @@ public class Lexer {
     }
 
     private boolean checkIfInteger(String input) {
+        if (input.isEmpty()) return false;
         boolean isNumber = true;
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c) && c != '-' && c != '+') {
@@ -41,6 +42,7 @@ public class Lexer {
     }
 
     private boolean checkIfVariable(String input) {
+        if (input.isEmpty()) return false;
         boolean isChar = true;
         for (char c : input.toCharArray()) {
             if (!Character.isLetter(c)) {
@@ -89,7 +91,9 @@ public class Lexer {
 
     public List<Node> tokenize(String input) {
         // Remove extra spaces between tokens, and strip spaces at the start and end.
-        input = input.replaceAll(" {2,}", " ").strip();
+        input = input.replaceAll(" {2,}", " ").strip().replace("\n", "");
+
+        if (input.isEmpty()) return new ArrayList<>();
 
         String[] stringTokens = input.split(" ");
         boolean isDefVar = false;

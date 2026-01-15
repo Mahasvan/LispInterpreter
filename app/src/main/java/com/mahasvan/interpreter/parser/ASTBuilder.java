@@ -37,15 +37,18 @@ public class ASTBuilder {
         return false;
     }
 
-    public void build(List<Node> tokens) throws RuntimeException {
+    public void build(List<Node> tokens) throws ArithmeticException {
         Stack<Node> stack = new Stack<>();
         for (Node token : tokens) {
             if (token instanceof P_CLOSE) {
                 List<Node> statementTokens = getOperands(stack);
                 // in prefix, the first symbol is the operator, rest are operands
-                Operator op = (Operator) statementTokens.getFirst();
+                Node op = statementTokens.getFirst();
+                if (!(op instanceof Operator operator)) {
+                    throw new ArithmeticException("Invalid syntax");
+                }
                 // add these operands as the children of the operator
-                op.getOperands().addAll(statementTokens.subList(1, statementTokens.size()));
+                operator.getOperands().addAll(statementTokens.subList(1, statementTokens.size()));
                 stack.push(op);
             } else {
                 stack.push(token);

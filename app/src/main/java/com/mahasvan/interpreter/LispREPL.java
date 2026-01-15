@@ -39,6 +39,7 @@ public class LispREPL {
             } catch (NoSuchElementException e) {
                 System.out.println("Undefined variable: " + input);
             } catch (ArithmeticException e) {
+                // syntax error
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println("Runtime Error: " + e.getMessage());
