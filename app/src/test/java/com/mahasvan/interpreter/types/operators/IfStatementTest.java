@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class IfStatementTest {
     private EvaluationVisitor evaluationVisitor;
 
@@ -70,7 +68,6 @@ class IfStatementTest {
         ifStatement.getOperands().addAll(operands);
         assert !ifStatement.validate();
     }
-
 
 
 }
