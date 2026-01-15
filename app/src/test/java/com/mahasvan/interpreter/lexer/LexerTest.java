@@ -38,14 +38,14 @@ public class LexerTest {
     public void testOpenParenthesisTokenization() {
         List<Node> tokens = lexer.tokenize("(");
         assert tokens.size() == 1;
-        assert tokens.getFirst().getClass() == P_OPEN.class;
+        assert tokens.getFirst().getClass() == POpen.class;
     }
 
     @Test
     public void testCloseParenthesisTokenization() {
         List<Node> tokens = lexer.tokenize(")");
         assert tokens.size() == 1;
-        assert tokens.getFirst().getClass() == P_CLOSE.class;
+        assert tokens.getFirst().getClass() == PClose.class;
     }
 
     @Test

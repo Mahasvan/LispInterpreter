@@ -1,8 +1,8 @@
 package com.mahasvan.interpreter.parser;
 
 import com.mahasvan.interpreter.types.nodes.Node;
-import com.mahasvan.interpreter.types.nodes.P_CLOSE;
-import com.mahasvan.interpreter.types.nodes.P_OPEN;
+import com.mahasvan.interpreter.types.nodes.PClose;
+import com.mahasvan.interpreter.types.nodes.POpen;
 import com.mahasvan.interpreter.types.operators.Operator;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class ASTBuilder {
 
     private List<Node> getOperands(Stack<Node> stack) {
         ArrayList<Node> operands = new ArrayList<>();
-        while (!stack.isEmpty() && !(stack.peek() instanceof P_OPEN)) {
+        while (!stack.isEmpty() && !(stack.peek() instanceof POpen)) {
             operands.add(stack.pop());
         }
         if (!stack.isEmpty()) {
@@ -40,7 +40,7 @@ public class ASTBuilder {
     public void build(List<Node> tokens) throws ArithmeticException {
         Stack<Node> stack = new Stack<>();
         for (Node token : tokens) {
-            if (token instanceof P_CLOSE) {
+            if (token instanceof PClose) {
                 List<Node> statementTokens = getOperands(stack);
                 // in prefix, the first symbol is the operator, rest are operands
                 Node op = statementTokens.getFirst();

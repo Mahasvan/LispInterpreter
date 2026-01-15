@@ -56,9 +56,9 @@ public class Lexer {
     private Node classifyToken(String input, boolean isDefVar) {
         switch (input.toLowerCase()) {
             case "(":
-                return new P_OPEN();
+                return new POpen();
             case ")":
-                return new P_CLOSE();
+                return new PClose();
             case "+":
                 return new Add();
             case "-":
