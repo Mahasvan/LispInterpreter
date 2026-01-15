@@ -30,7 +30,6 @@ public class Lexer {
     }
 
     private boolean checkIfInteger(String input) {
-        if (input.isEmpty()) return false;
         boolean isNumber = true;
         for (char c : input.toCharArray()) {
             if (!Character.isDigit(c) && c != '-' && c != '+') {
