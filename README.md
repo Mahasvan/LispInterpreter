@@ -60,10 +60,10 @@ because this way I don't need to deal with stuff like maximal munching.
 - Variable definitions inside if-statements populate the symbol table before the branch is executed.
     - Example:
     - ```shell
-  ( defvar d 5 )
-  ( if ( = d 6 ) ( defvar g 3 ) )
-  ( + 0 g ) <-- Used to print value
-    ```
+      ( defvar d 5 )
+      ( if ( = d 6 ) ( defvar g 3 ) )
+      ( + 0 g ) <-- Used to print value
+      ```
     - When making the AST, a Variable object is created for g, as it is a defvar statement.
     - Since the branch hasnt been executed yet, its value is still `null`.
     - So, an error is raised when the evaluator tries to access its value.
