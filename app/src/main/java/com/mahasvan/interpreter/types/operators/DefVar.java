@@ -28,6 +28,6 @@ public class DefVar implements Operator {
             if (operand == null) return false;
         }
         if (!(operands.getFirst() instanceof Variable)) return false;
-        return !(operands.get(1) instanceof Variable);
+        return operands.get(1) != null;
     }
 }
