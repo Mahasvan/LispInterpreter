@@ -62,12 +62,21 @@ because this way I don't need to deal with stuff like maximal munching.
     - ```shell
       ( defvar d 5 )
       ( if ( = d 6 ) ( defvar g 3 ) )
-      ( + 0 g ) <-- Used to print value
+      ( + 0 g ) <-- 5
       ```
     - When making the AST, a Variable object is created for g, as it is a defvar statement.
     - Since the branch hasnt been executed yet, its value is still `null`.
     - So, an error is raised when the evaluator tries to access its value.
     - We can treat it as an expected runtime error, because this is sort of similar to what happens in Python.
+- When a variable is defined, the value expression is stored as-is.
+- This means if the value has a variable, and the variable is reassigned, all variables that depend on it will be changed as well.
+-  Can be solved by flattening the expression into a `Literal` when assigning the value.
+  - ```shell
+    ( defvar a 1 )
+    ( defvar b a )
+    ( defvar a 3 )
+    ( + 0 b ) <-- prints 3, but should ideally print 1
+    ```
 
 ## Patterns used
 
@@ -78,7 +87,7 @@ because this way I don't need to deal with stuff like maximal munching.
 - Visitor for evaluation
 
 ## Todo
-
+- fix variable reassignment problem
 - unary operations
 - unit tests
 - `write` operation?
