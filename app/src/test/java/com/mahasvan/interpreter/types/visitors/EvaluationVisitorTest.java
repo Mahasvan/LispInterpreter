@@ -145,7 +145,7 @@ class EvaluationVisitorTest {
         // This branch will never get executed practically
         // because the IfStatement validation will not accept three branches.
         ifStatement.getOperands().add(new Literal(1));
-        assert  ifStatement.accept(evaluationVisitor) == 0;
+        assert ifStatement.accept(evaluationVisitor) == 0;
     }
 
 
