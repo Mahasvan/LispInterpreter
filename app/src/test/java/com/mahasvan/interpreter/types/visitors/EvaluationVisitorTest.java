@@ -6,6 +6,8 @@ import com.mahasvan.interpreter.types.operators.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -93,7 +95,7 @@ class EvaluationVisitorTest {
         defVar.getOperands().add(value);
         assert var.value == null;
         defVar.accept(evaluationVisitor);
-        assert var.value == value;
+        assert Objects.equals(var.value.accept(evaluationVisitor), value.accept(evaluationVisitor));
     }
 
     @Test

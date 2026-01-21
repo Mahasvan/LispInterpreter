@@ -1,5 +1,6 @@
 package com.mahasvan.interpreter.types.operators;
 
+import com.mahasvan.interpreter.exceptions.SyntaxException;
 import com.mahasvan.interpreter.lexer.Lexer;
 import com.mahasvan.interpreter.parser.ASTBuilder;
 import com.mahasvan.interpreter.types.nodes.Literal;
@@ -47,7 +48,7 @@ class AddTest {
         assert !tokens.isEmpty();
         // validation is called when the tree is being built
         assertThrows(
-                ArithmeticException.class,
+                SyntaxException.class,
                 () -> astBuilder.build(tokens));
 
     }

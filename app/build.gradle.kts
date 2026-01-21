@@ -4,10 +4,15 @@
  * This generated file contains a sample Java application project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/9.2.0/userguide/building_java_projects.html in the Gradle documentation.
  */
+import com.github.spotbugs.snom.Confidence
+import com.github.spotbugs.snom.Effort
+
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("pmd")
+    id("com.github.spotbugs") version "6.4.8"
 }
 
 repositories {
@@ -48,4 +53,36 @@ tasks.withType<JavaExec> {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+pmd {
+    isConsoleOutput = true
+    toolVersion = "7.0.0"
+    rulesMinimumPriority = 5
+    ruleSets = listOf(
+        "category/java/errorprone.xml",
+        "category/java/bestpractices.xml"
+    )
+}
+
+spotbugs {
+    ignoreFailures = false
+    showStackTraces = true
+    showProgress = true
+    effort = Effort.DEFAULT
+    reportLevel = Confidence.DEFAULT
+    visitors = listOf("FindSqlInjection", "SwitchFallthrough")
+    omitVisitors = listOf("FindNonShortCircuit")
+    chooseVisitors = listOf("-FindNonShortCircuit", "+TestASM")
+    reportsDir = file("$buildDir/spotbugs")
+    maxHeapSize = "1g"
+    extraArgs = listOf("-nested:false")
+    jvmArgs = listOf("-Duser.language=ja")
+}
+
+tasks.spotbugsMain {
+    reports.create("html") {
+        required = true
+        outputLocation = file("$buildDir/reports/spotbugs.html")
+    }
 }

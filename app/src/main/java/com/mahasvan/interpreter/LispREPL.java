@@ -1,5 +1,6 @@
 package com.mahasvan.interpreter;
 
+import com.mahasvan.interpreter.exceptions.SyntaxException;
 import com.mahasvan.interpreter.lexer.Lexer;
 import com.mahasvan.interpreter.parser.ASTBuilder;
 import com.mahasvan.interpreter.types.nodes.Node;
@@ -38,7 +39,7 @@ public class LispREPL {
                 System.out.println(treeBuilder.getTree().accept(evaluator));
             } catch (NoSuchElementException e) {
                 System.out.println("Undefined variable: " + input);
-            } catch (ArithmeticException e) {
+            } catch (SyntaxException e) {
                 // syntax error
                 System.out.println(e.getMessage());
             } catch (Exception e) {

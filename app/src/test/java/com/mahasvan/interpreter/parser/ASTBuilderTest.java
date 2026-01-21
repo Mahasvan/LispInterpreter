@@ -1,5 +1,6 @@
 package com.mahasvan.interpreter.parser;
 
+import com.mahasvan.interpreter.exceptions.SyntaxException;
 import com.mahasvan.interpreter.lexer.Lexer;
 import com.mahasvan.interpreter.types.nodes.Node;
 import com.mahasvan.interpreter.types.operators.Add;
@@ -37,6 +38,6 @@ class ASTBuilderTest {
     @ValueSource(strings = {"", "( + + 1 )", "1 )"})
     public void testBuildTreeWithValidStructureButInvalidSyntaxThrowsException(String input) {
         List<Node> tokens = lexer.tokenize(input);
-        assertThrows(ArithmeticException.class, () -> builder.build(tokens));
+        assertThrows(SyntaxException.class, () -> builder.build(tokens));
     }
 }

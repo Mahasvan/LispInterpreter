@@ -1,5 +1,6 @@
 package com.mahasvan.interpreter.lexer;
 
+import com.mahasvan.interpreter.exceptions.SyntaxException;
 import com.mahasvan.interpreter.types.nodes.*;
 import com.mahasvan.interpreter.types.operators.*;
 
@@ -105,7 +106,7 @@ public class Lexer {
         for (String stringToken : stringTokens) {
             Node token = classifyToken(stringToken, isDefVar);
             if (token == null) {
-                throw new ArithmeticException("Invalid token: " + stringToken);
+                throw new SyntaxException("Invalid token: " + stringToken);
             }
             tokens.add(token);
         }

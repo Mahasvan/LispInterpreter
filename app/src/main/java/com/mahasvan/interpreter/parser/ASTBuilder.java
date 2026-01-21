@@ -1,5 +1,6 @@
 package com.mahasvan.interpreter.parser;
 
+import com.mahasvan.interpreter.exceptions.SyntaxException;
 import com.mahasvan.interpreter.types.nodes.Node;
 import com.mahasvan.interpreter.types.nodes.PClose;
 import com.mahasvan.interpreter.types.nodes.POpen;
@@ -13,7 +14,7 @@ public class ASTBuilder {
 
     private Node tree = null;
 
-    private List<Node> getOperands(Stack<Node> stack) throws ArithmeticException {
+    private List<Node> getOperands(Stack<Node> stack) throws SyntaxException {
         ArrayList<Node> operands = new ArrayList<>();
         while (!stack.isEmpty() && !(stack.peek() instanceof POpen)) {
             operands.add(stack.pop());
@@ -22,7 +23,7 @@ public class ASTBuilder {
             stack.pop();
             // pop out the open parenthesis
         } else {
-            throw new ArithmeticException("Invalid Syntax");
+            throw new SyntaxException("Invalid Syntax");
         }
         return operands.reversed();
     }
@@ -39,7 +40,7 @@ public class ASTBuilder {
         return false;
     }
 
-    public void build(List<Node> tokens) throws ArithmeticException {
+    public void build(List<Node> tokens) throws SyntaxException {
         Stack<Node> stack = new Stack<>();
         for (Node token : tokens) {
             if (token instanceof PClose) {
@@ -47,7 +48,7 @@ public class ASTBuilder {
                 // in prefix, the first symbol is the operator, rest are operands
                 Node op = statementTokens.getFirst();
                 if (!(op instanceof Operator operator)) {
-                    throw new ArithmeticException("Invalid syntax");
+                    throw new SyntaxException("Invalid syntax");
                 }
                 // add these operands as the children of the operator
                 operator.getOperands().addAll(statementTokens.subList(1, statementTokens.size()));
@@ -59,7 +60,7 @@ public class ASTBuilder {
 //        System.out.println("Stack: " + stack);
         // the hope is that only the root operation will remain in the stack.
         if (stack.size() != 1 || isInvalidSyntax(stack.peek())) {
-            throw new ArithmeticException("Invalid syntax");
+            throw new SyntaxException("Invalid syntax");
         }
         this.tree = stack.pop();
     }

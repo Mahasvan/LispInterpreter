@@ -1,5 +1,6 @@
 package com.mahasvan.interpreter.lexer;
 
+import com.mahasvan.interpreter.exceptions.SyntaxException;
 import com.mahasvan.interpreter.types.nodes.*;
 import com.mahasvan.interpreter.types.operators.*;
 import org.junit.jupiter.api.Assertions;
@@ -34,7 +35,7 @@ public class LexerTest {
     @ValueSource(strings = {"(abc", "+12a"})
     public void testInvalidTokenReturnsNull(String statement) {
         Assertions.assertThrows(
-                ArithmeticException.class,
+                SyntaxException.class,
                 () -> lexer.tokenize(statement)
         );
     }
